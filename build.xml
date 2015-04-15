@@ -22,7 +22,7 @@
     <target name="drush-setup-drush5">
         <mkdir dir="${drush.directory}/drush5" />
         <!-- <httpget url="https://github.com/drush-ops/drush/archive/5.11.0.tar.gz" dir="/tmp"/> -->
-        <exec command="wget https://github.com/drush-ops/drush/archive/5.11.0.tar.gz -P /tmp"/>
+        <exec command="wget -q https://github.com/drush-ops/drush/archive/5.11.0.tar.gz -O /tmp/5.11.0.tar.gz"/>
         <untar file="/tmp/5.11.0.tar.gz" todir="${drush.directory}/drush5"/>
         <delete file="/tmp/5.11.0.tar.gz" />
         <symlink target="${drush.directory}/drush5/drush-5.11.0/drush" link="${bin.directory}/drush5"/>
@@ -30,13 +30,13 @@
 
     <target name="drush-setup-drush6">
         <mkdir dir="${drush.directory}/drush6" />
-        <exec command="${bin.directory}/composer require drush/drush:6.* -d ${drush.directory}/drush6" />
+        <exec command="composer require drush/drush:6.* -d ${drush.directory}/drush6" />
         <symlink target="${drush.directory}/drush6/vendor/bin/drush" link="${bin.directory}/drush6"/>
     </target>
 
     <target name="drush-setup-drush7">
         <mkdir dir="${drush.directory}/drush7" />
-        <exec command="${bin.directory}/composer require drush/drush:dev-master -d ${drush.directory}/drush7" />
+        <exec command="composer require drush/drush:dev-master -d ${drush.directory}/drush7" />
         <symlink target="${drush.directory}/drush7/vendor/bin/drush" link="${bin.directory}/drush7"/>
     </target>
 
