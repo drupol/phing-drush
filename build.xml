@@ -45,7 +45,7 @@
     </target>
 
     <target name="drush-sync">
-        <filesync sourceDir="${drush.directory}"
+        <filesync sourceDir="${drush.directory}/*"
                   destinationDir="${aegir.user}@${aegir.host}:${drush.directory}"
                   verbose="false" delete="true"/>
     </target>
