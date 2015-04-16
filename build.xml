@@ -12,7 +12,8 @@
     </target>
 
     <target name="drush-setup-directories">
-        <mkdir dir="${drush.directory}"/>
+        <mkdir dir="${drush.directory}/lib"/>
+        <mkdir dir="${drush.directory}/bin"/>
     </target>
 
     <target name="drush-setup-drush5">
