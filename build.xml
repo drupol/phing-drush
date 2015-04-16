@@ -17,7 +17,7 @@
 
     <target name="drush-setup-drush5">
         <mkdir dir="${drush.directory}/lib/drush5" />
-        <httpget url="https://github.com/drush-ops/drush/archive/5.11.0.tar.gz" dir="${drush.directory}/lib/drush5" sslVerifyPeer="false">
+        <httpget url="https://github.com/drush-ops/drush/archive/5.11.0.tar.gz" dir="${drush.directory}/lib/drush5" sslVerifyPeer="false" followRedirects="true">
             <config name="proxy" value="${httpget.config.proxy}"/>
         </httpget>
         <untar file="${drush.directory}/lib/drush5/5.11.0.tar.gz" todir="${drush.directory}/lib/drush5"/>
