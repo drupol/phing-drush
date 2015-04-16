@@ -23,7 +23,7 @@
         <if>
             <equals arg1="${composer}" arg2="0"/>
             <then>
-                <exec command="composer --version  |awk {'print $3' '$4' '$5'}" outputProperty="composer.version"/>
+                <exec command="composer --version  |awk {'print $3\" \"$4\" \"$5'}" outputProperty="composer.version"/>
                 <echo msg="Composer version: ${composer.version}"/>
             </then>
             <else>
