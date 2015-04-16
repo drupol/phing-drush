@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="setup-drush" default="build-drush" phingVersion="2.4.11">
 
-    <target name="build-drush" depends="drush-check-composer, drush-setup-properties, drush-clean, drush-setup-directories, drush-setup-drush5, drush-setup-drush6, drush-setup-drush7, drush-setup-symlinks, drush-sync"/>
+    <target name="build-drush" depends="drush-check-dependencies, drush-setup-properties, drush-clean, drush-setup-directories, drush-setup-drush5, drush-setup-drush6, drush-setup-drush7, drush-setup-symlinks, drush-sync"/>
 
     <target name="drush-setup-properties">
         <property file="build.properties" />
