@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="setup-drush" default="build-drush" phingVersion="2.4.11">
+
+    <target name="build-drush" depends="drush-check-dependencies, drush-setup-properties, drush-clean, drush-setup-directories, drush-setup-drush5, drush-setup-drush6, drush-setup-drush7, drush-setup-symlinks, drush-sync"/>
+
+    <target name="drush-setup-properties">
+        <property file="build.properties" />
+    </target>
+
+    <target name="drush-check-dependencies">
+        <exec command="which php" returnProperty="php"/>
+        <if>
+            <equals arg1="${php}" arg2="0"/>
+            <then>
+                <exec command="php -v | grep built | awk {'print $2'}" outputProperty="php.version"/>
+                <echo msg="PHP version: ${php.version}"/>
+            </then>
+            <else>
+                <fail msg="PHP is not available."/>
+            </else>
+        </if>
+        <exec command="which composer" returnProperty="composer"/>
+        <if>
+            <equals arg1="${composer}" arg2="0"/>
+            <then>
+                <exec command="composer --version  |awk {'print $3&quot; &quot;$4&quot; &quot;$5'}" outputProperty="composer.version"/>
+                <echo msg="Composer version: ${composer.version}"/>
+            </then>
+            <else>
+                <fail msg="Composer is not available."/>
+            </else>
+        </if>
+    </target>
+
+    <target name="drush-clean">
+        <delete dir="${drush.directory}" />
+    </target>
+
+    <target name="drush-setup-directories">
+        <mkdir dir="${drush.directory}/lib"/>
+        <mkdir dir="${drush.directory}/bin"/>
+    </target>
+
+    <target name="drush-setup-drush5">
+        <mkdir dir="${drush.directory}/lib/drush5" />
+        <httpget url="https://github.com/drush-ops/drush/archive/5.11.0.tar.gz" dir="${drush.directory}/lib/drush5" sslVerifyPeer="false" followRedirects="true">
+            <config name="proxy" value="${httpget.config.proxy}"/>
+        </httpget>
+        <untar file="${drush.directory}/lib/drush5/5.11.0.tar.gz" todir="${drush.directory}/lib/drush5"/>
+        <delete file="${drush.directory}/lib/drush5/5.11.0.tar.gz" />
+        <symlink target="${drush.directory}/lib/drush5/drush-5.11.0/drush" link="${drush.directory}/bin/drush5"/>
+    </target>
+
+    <target name="drush-setup-drush6">
+        <mkdir dir="${drush.directory}/lib/drush6" />
+        <exec command="composer require drush/drush:6.* -d ${drush.directory}/lib/drush6" />
+        <symlink target="${drush.directory}/lib/drush6/vendor/bin/drush" link="${drush.directory}/bin/drush6"/>
+    </target>
+
+    <target name="drush-setup-drush7">
+        <mkdir dir="${drush.directory}/lib/drush7" />
+        <exec command="composer require drush/drush:dev-master -d ${drush.directory}/lib/drush7" />
+        <symlink target="${drush.directory}/lib/drush7/vendor/bin/drush" link="${drush.directory}/bin/drush7"/>
+    </target>
+
+    <target name="drush-setup-symlinks">
+        <symlink target="${drush.directory}/bin/drush7" link="${drush.directory}/bin/drush" />
+    </target>
+
+</project>
