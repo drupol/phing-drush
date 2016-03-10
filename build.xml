@@ -64,7 +64,7 @@
     </target>
 
     <target name="drush-setup-symlinks">
-        <symlink target="${drush.directory}/bin/drush7" link="${drush.directory}/bin/drush" />
+        <symlink target="${drush.directory}/bin/drush5" link="${drush.directory}/bin/drush" />
     </target>
 
     <target name="drush-sync">
