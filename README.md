@@ -2,7 +2,7 @@
 Install Drush5, 6 and 7 with Phing
 
 # Usage
-Create a file 'build.properties' having those properties:
+Create a config file ```build.properties``` having those properties:
 
 ```
 # Where to install drush
@@ -15,6 +15,10 @@ aegir.host = localhost
 # Optional, proxy configuration for downloading the files.
 httpget.config.proxy = http://user:password@proxyhost:8012/
 ```
+
+Once the config file is created and customized, run the command:
+
+```phing -f build.xml```
 
 # Todo
 * You tell me
