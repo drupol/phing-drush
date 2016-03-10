@@ -21,4 +21,5 @@ httpget.config.proxy = http://user:password@proxyhost:8012/
 
 # Author
 Pol Dellaiera
+
 Contact: https://www.drupal.org/u/pol
