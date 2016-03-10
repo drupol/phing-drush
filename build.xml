@@ -50,7 +50,7 @@
         <httpget url="http://download.pear.php.net/package/Console_Table-1.1.3.tgz" dir="${drush.directory}/lib/drush5/drush-5.11.0/lib" sslVerifyPeer="false" followRedirects="true">
             <config name="proxy" value="${httpget.config.proxy}"/>
         </httpget>
-        <untar file="${drush.directory}/lib/drush5/lib/Console_Table-1.1.3.tgz" todir="${drush.directory}/lib/drush5/drush-5.11.0/lib"/>
+        <untar file="${drush.directory}/lib/drush5/drush-5.11.0/lib/Console_Table-1.1.3.tgz" todir="${drush.directory}/lib/drush5/drush-5.11.0/lib"/>
         <delete file="${drush.directory}/lib/drush5/drush-5.11.0/lib/Console_Table-1.1.3.tgz" />
         <delete file="${drush.directory}/lib/drush5/5.11.0.tar.gz" />
         <symlink target="${drush.directory}/lib/drush5/drush-5.11.0/drush" link="${drush.directory}/bin/drush5"/>
