@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="setup-drush" default="build-drush" phingVersion="2.4.11">
 
-    <target name="build-drush" depends="drush-check-dependencies, drush-setup-properties, drush-clean, drush-setup-directories, drush-setup-drush5, drush-setup-drush6, drush-setup-drush7, drush-setup-symlinks, drush-sync"/>
+    <target name="build-drush" depends="drush-check-dependencies, drush-setup-properties, drush-clean, drush-setup-directories, drush-setup-drush5, drush-setup-drush6, drush-setup-drush7, drush-setup-drush8, drush-setup-symlinks, drush-sync"/>
 
     <target name="drush-setup-properties">
         <property file="build.properties" />
@@ -64,12 +64,18 @@
 
     <target name="drush-setup-drush7">
         <mkdir dir="${drush.directory}/lib/drush7" />
-        <exec command="composer require drush/drush:dev-master -d ${drush.directory}/lib/drush7" />
+        <exec command="composer require drush/drush:7.* -d ${drush.directory}/lib/drush7" />
         <symlink target="${drush.directory}/lib/drush7/vendor/bin/drush" link="${drush.directory}/bin/drush7"/>
     </target>
 
+    <target name="drush-setup-drush8">
+        <mkdir dir="${drush.directory}/lib/drush8" />
+        <exec command="composer require drush/drush:8.* -d ${drush.directory}/lib/drush8" />
+        <symlink target="${drush.directory}/lib/drush8/vendor/bin/drush" link="${drush.directory}/bin/drush8"/>
+    </target>
+
     <target name="drush-setup-symlinks">
-        <symlink target="${drush.directory}/bin/drush5" link="${drush.directory}/bin/drush" />
+        <symlink target="${drush.directory}/bin/drush7" link="${drush.directory}/bin/drush" />
     </target>
 
     <target name="drush-sync">

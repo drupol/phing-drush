@@ -1,5 +1,5 @@
 # phing-drush
-Install Drush5, 6 and 7 with Phing
+Install Drush 5, 6, 7 and 8 with Phing.
 
 # Usage
 Create a config file ```build.properties``` having those properties:
